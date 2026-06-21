@@ -12,15 +12,18 @@ def countdown(minutes: int, label: str):
     
     print(f"\n{label}が終わりました！")
 
-def pomodoro(work_minutes: int, break_minutes: int):
-    countdown(work_minutes, "作業")
-    print("\n休憩時間です！")
-    countdown(break_minutes, "休憩")
-    print(f"\n次の作業に戻りましょう！")
+def pomodoro(work_minutes: int, break_minutes: int, rounds: int):
+    for i in range(1, rounds + 1):
+        countdown(work_minutes, "作業")
+        print("\n休憩時間です！")
+        countdown(break_minutes, "休憩")
+        print(f"\n次の作業に戻りましょう！")
+    print(f"\n{rounds}回のポモドーロ、すべて完了しました")
 
 
 
 if __name__ == "__main__":
     work_minutes = int(sys.argv[1]) if len(sys.argv) > 1 else 25
     break_minutes = int(sys.argv[2]) if len(sys.argv) > 2 else 5
-    pomodoro(work_minutes, break_minutes)
+    rounds = int(sys.argv[3]) if len(sys.argv) > 3 else 4
+    pomodoro(work_minutes, break_minutes, rounds)
